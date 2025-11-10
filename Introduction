@@ -1,0 +1,17 @@
+
+LLD(Low Level Design)-Code Structure
+  focuses on:-
+    1>Scalability-how application will handle large number of users, how easily we can integrate new feature for large number of users
+    2>Maintainability-easy to maitain, for example if we add a new feature it should not lead to effecting old features, code should be easy to debug, should need less effor to add new feature.
+    3>Re-usability-plug and play model,loosly coupled,for example, payment gateway can be used in any application.
+
+HLD(High Level Design)-System Architecture
+  focuses on:-
+    1>Tech Stack( Java/Spring Boot..)
+    2>Data Base( SQL, NoSQL, ..)
+    3>Server Scale
+    4>Cost Optimization, etc
+
+DSA-Tool/Algorithms
+
+HLD+LLD+DSA=APPLICATION
