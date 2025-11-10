@@ -1,0 +1,18 @@
+Problems in application which should be considered
+  1>Maintainability
+  2>Readebility
+  3>Bugs
+
+To tackle this SOLID principles were introduced
+
+SOLID Principles:-
+
+S(Single Responsibility Principle)
+O(Open Close Principle)
+L(Liskov Substitution Principle)
+I(Interface Segrigation Principle)
+D(Dependency Inversion Principle)
+
+S->A class should handle only one thing/responsibility
+O->A class should be open for extension but should be close for modification
+L->
