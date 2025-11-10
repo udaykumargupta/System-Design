@@ -1,0 +1,41 @@
+UML(Unified Modeling Language):-The main aim of UML is to define a standard way to visualize the way a system has been designed.
+                                It is quite similar to blueprints used in other fields of engineering. UML is not a programming language, it is rather a visual language.
+  Types:-
+    1>Structural(Static)- classes, objects, components, and their relationships, providing a clear view of the system's architecture.(7 Types, Class Diagram is important)
+    2>Behavioural(Dynamic)- depict the dynamic aspects of a system, illustrating how objects interact and behave over time in response to events.(7 types, Sequence Diagram is important)
+
+  Access Modifies Recap:-
+    public:-everywhere
+    private:-within the same class
+    protected:-within the class and child class
+
+  Class Diagram-static structure of a system by showing system's classes, their methods and attributes. Class diagrams also help us identify relationship between different classes or objects.
+    
+      1>Class Structure
+    
+    |<<abstact>>( if class is abstract)|
+    |__________________________________|
+    |                                  |    
+    |   Class Name                     |
+    |__________________________________|
+    |                                  |
+    |   Variables                      |
+    |  access modifier name:datatype   |
+    |__________________________________|
+    |                                  |
+    |   Methords                       |
+    |access modifier name():datatype   |
+    |__________________________________|
+
+    Public:- is represented by +
+    Private:- is represented by -
+    Protected:- is represented by #
+
+    2> Assosiation / Connection
+        Types:-
+          Class Assosiation(Inheritance------->, is-a relationship)
+          Object Assosiation(has-a relation ,Simple Assosiation, Aggregation(Week relation, sofa-----diamond Room), Composition(Strong Relation, seat-------solid diamond chair))
+
+
+  Sequence Diagram:-simply depicts interaction between objects in a sequential order i.e. the order in which these interactions take place.
+    
