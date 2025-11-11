@@ -13,6 +13,133 @@ L(Liskov Substitution Principle)
 I(Interface Segrigation Principle)
 D(Dependency Inversion Principle)
 
-S->A class should handle only one thing/responsibility
-O->A class should be open for extension but should be close for modification
-L->
+SRP->Every Java Class must perform single functionality, Implementation of multiple functionalities in a single class mashup the code.
+  A class should have only one reason to change —
+  it should do one job and do it well.
+
+  Bad Example (Violating SRP)
+  Let’s say you have a Spring Boot service that does too many things:
+
+  @Service
+  public class UserService {
+  
+      public void registerUser(String username, String email) {
+          saveUser(username);
+          sendWelcomeEmail(email);
+          logRegistration(username);
+      }
+  
+      // 1 Business logic
+      private void saveUser(String username) {
+          System.out.println("Saving user: " + username);
+      }
+  
+      // 2 Email responsibility
+      private void sendWelcomeEmail(String email) {
+          System.out.println("Sending welcome email to " + email);
+      }
+  
+      // 3 Logging responsibility
+      private void logRegistration(String username) {
+          System.out.println("Logging registration event for " + username);
+      }
+  }
+  the class still has:
+  Responsibility for user management
+  Responsibility for email notifications
+  Responsibility for logging
+  
+  So the class would need to change if:
+  The email system changes (e.g., switch from SMTP to AWS SES)
+  The logging mechanism changes (e.g., switch from System.out to database logging)
+  The registration rules change (e.g., adding password validation)
+  
+  That means multiple reasons to change, which breaks SRP.
+
+  Good Example (Following SRP)
+  We’ll split the responsibilities into separate, focused classes.
+
+  UserService — Manages user registration logic only
+  @Service
+  public class UserService {
+
+    private final EmailService emailService;
+    private final AuditService auditService;
+
+    public UserService(EmailService emailService, AuditService auditService) {
+        this.emailService = emailService;
+        this.auditService = auditService;
+    }
+
+    public void registerUser(String username, String email) {
+        // Core responsibility: user registration logic
+        System.out.println("Saving user: " + username);
+
+        // Delegating responsibilities
+        emailService.sendWelcomeEmail(email);
+        auditService.logRegistration(username);
+      }
+  }
+  EmailService — Handles sending emails only
+  @Service
+  public class EmailService {
+      public void sendWelcomeEmail(String email) {
+          System.out.println("Sending welcome email to " + email);
+      }
+  }
+
+
+OCP->A class should be open for extension but should be closed for modification
+  Bad Example (Violating OCP)
+  Suppose you have a service that sends notifications to users:
+  
+  @Service
+  public class NotificationService {
+  
+      public void sendNotification(String message, String type) {
+          if (type.equalsIgnoreCase("EMAIL")) {
+              System.out.println("Sending email: " + message);
+          } else if (type.equalsIgnoreCase("SMS")) {
+              System.out.println("Sending SMS: " + message);
+          }
+      }
+  }
+  If tomorrow you want to support Push Notifications or WhatsApp,
+  you have to edit this class — breaking the OCP.
+
+  Good Example (Following OCP)
+  We’ll refactor this using interfaces and Spring beans.
+
+  Step 1: Create a common interface
+  public interface NotificationSender {
+      void send(String message);
+  }
+  Step 2: Create separate implementations
+
+  public class EmailNotificationSender implements NotificationSender {
+        @Override
+        public void send(String message) {
+            System.out.println("Sending Email: " + message);
+        }
+    }
+
+  public class SmsNotificationSender implements NotificationSender {
+      @Override
+      public void send(String message) {
+          System.out.println("Sending SMS: " + message);
+      }
+  }
+  
+  Step-3 Extend without modifying
+  If you want to add a new type of notification (like Push):
+  @Component("pushNotification")
+  public class PushNotificationSender implements NotificationSender {
+      @Override
+      public void send(String message) {
+          System.out.println("Sending Push Notification: " + message);
+      }
+  }
+
+LSP->
+
+
