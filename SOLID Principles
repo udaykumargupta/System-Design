@@ -193,5 +193,11 @@ public class Instagram implements SocialMedia, PostMediaManager {
     }
 }
 
+ISP->The principle states that the larger interfaces split into smaller ones. Because the implementation classes use only the methords that are required.
+We should not force the client to use methords they do not want to use.
+The goal of ISP is similar to SRP.
+
+DIP-we must use abstraction instead of concrete implementations. High level modules should not depend on low level modules but should depend on the abstraction.
+
 
 
