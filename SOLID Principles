@@ -140,6 +140,58 @@ OCP->A class should be open for extension but should be closed for modification
       }
   }
 
-LSP->
+LSP->We have to understand this with example
+
+  public abstract class SocialMedia {
+  
+      //@support WhatsApp, Facebook, Instagram
+      public abstract void chatWithFriend();
+  
+      //@support Facebook, Instagram
+      public abstract void publishPost(Object post);
+  
+      //@support WhatsApp, Facebook, Instagram
+      public abstract void sendPhotosAndVideos();
+  
+      //@support WhatsApp, Facebook
+      public abstract void groupVideoCall(String... users);
+  }
+
+now if we make a class instagram and then inherit Social Media Class, since all the functions of SocialMedia class are not supported by instagram like groupVideoCall,
+we have to keep it, inspite no use.
+to avoid this and keep or code clean and efficient 
+we can make different interfaces  having different functionality and the inherit multiple class as per the need
+
+public interface SocialMedia {
+
+    public void chatWithFriend();
+
+    public void sendPhotosAndVideos();
+}
+
+public interface PostMediaManager {
+
+    public void publishPost(Object post);
+}
+
+public interface PostMediaManager{
+  
+    public void groupVideoCall(String... users);
+}
+
+now we can make instagram class inheriting what is needed
+
+public class Instagram implements SocialMedia, PostMediaManager {
+
+    public void publishPost(Object post) {
+    }
+
+    public void chatWithFriend() {
+    }
+
+    public void sendPhotosAndVideos() {
+    }
+}
+
 
 
